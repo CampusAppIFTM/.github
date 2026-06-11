@@ -32,19 +32,19 @@ O projeto desenvolve, ao mesmo tempo:
 
 | Semanas | Fase | Conteúdo | Entrega |
 | --- | --- | --- | --- |
-| **1–2** | 🧠 Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | Backlog inicial |
-| **3–4** | 🎨 Design & Navegação | Wireframes no Figma · Estrutura React Navigation | Telas navegáveis no Expo Go |
-| **5–6** | 🔐 Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | Autenticação funcionando |
-| **7–8** | ⚙️ Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | MVP de ponta a ponta |
-| **9–10** | ✨ Sprint 3 — Polimento | Estilização · Testes cruzados · Correção de bugs | App estável e estilizado |
-| **11** | 🎤 Pitch Deck | Slides: Problema / Solução / Demo / Próximos Passos · Ensaio | Pitch de 5 minutos |
-| **12** | 🦈 Shark Tank IFTM | Apresentação para banca · Demo ao vivo no Expo Go | Entrega final |
+| **1–2** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | Backlog inicial |
+| **3–4** | Design & Navegação | Wireframes no Figma · Estrutura React Navigation | Telas navegáveis no Expo Go |
+| **5–6** | Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | Autenticação funcionando |
+| **7–8** | Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | MVP de ponta a ponta |
+| **9–10** | Sprint 3 — Polimento | Estilização · Testes cruzados · Correção de bugs | App estável e estilizado |
+| **11** | Pitch Deck | Slides: Problema / Solução / Demo / Próximos Passos · Ensaio | Pitch de 5 minutos |
+| **12** | Shark Tank IFTM | Apresentação para banca · Demo ao vivo no Expo Go | Entrega final |
 
 **Ritmo da sala:** toda aula começa com uma _Daily Meeting_ de 10 minutos — cada equipe responde: _o que fizemos? o que faremos hoje? existe algum impedimento?_
 
 **Avaliação:** Funcionamento (40%) · Pitch (30%) · Código (20%) · Colaboração (10%)
 
-## 🧭 Legenda de Prioridades (MoSCoW)
+## Legenda de Prioridades (MoSCoW)
 
 | Símbolo | Categoria | Significado |
 | --- | --- | --- |
@@ -53,7 +53,7 @@ O projeto desenvolve, ao mesmo tempo:
 | 🔵 C | Could Have | Legal, mas não prioritário (icebox) |
 | ⚪ W | Won't Have | Decisão registrada de ficar fora do trimestre |
 
-## 🛠️ Stack Comum
+## Stack Comum
 
 | Camada | Tecnologia |
 | --- | --- |
