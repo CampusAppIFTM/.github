@@ -1,4 +1,4 @@
-# 📱 Campus App 2025
+# 📱 Campus App 2026
 
 ### _Tecnologia feita por quem vive o campus._
 
