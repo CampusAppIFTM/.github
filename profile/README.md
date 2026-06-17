@@ -32,26 +32,41 @@ O projeto desenvolve, ao mesmo tempo:
 
 | Semanas | Fase | Conteúdo | Entrega |
 | --- | --- | --- | --- |
-| **1–2** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | Backlog inicial |
-| **3–4** | Design & Navegação | Wireframes no Figma · Estrutura React Navigation | Telas navegáveis no Expo Go |
-| **5–6** | Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | Autenticação funcionando |
-| **7–8** | Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | MVP de ponta a ponta |
-| **9–10** | Sprint 3 — Polimento | Estilização · Testes cruzados · Correção de bugs | App estável e estilizado |
-| **11** | Pitch Deck | Slides: Problema / Solução / Demo / Próximos Passos · Ensaio | Pitch de 5 minutos |
-| **12** | Shark Tank IFTM | Apresentação para banca · Demo ao vivo no Expo Go | Entrega final |
+| **1–2** <br> **01/06 - 12/06** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | Backlog inicial |
+| **3–4** <br> **15/06 a 26/06** | Design & Navegação | Wireframes no Figma · Estrutura React Navigation | Telas navegáveis no Expo Go |
+| **5–6** <br> **29/06 a 09/07** | Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | Autenticação funcionando |
+| **7–8** <br> **28/07 a 07/08** | Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | MVP de ponta a ponta |
+| **9–10** <br> **10/08 a 21/08** | Sprint 3 — Polimento | Estilização · Testes cruzados · Correção de bugs | App estável e estilizado |
+| **11** <br> **24/08 a 28/08** | Pitch Deck | Slides: Problema / Solução / Demo / Próximos Passos · Ensaio | Pitch de 5 minutos |
+| **12** <br> **01/09 a 04/09** | Shark Tank IFTM | Apresentação para banca · Demo ao vivo no Expo Go | Entrega final |
 
 **Ritmo da sala:** toda aula começa com uma _Daily Meeting_ de 10 minutos — cada equipe responde: _o que fizemos? o que faremos hoje? existe algum impedimento?_
 
 **Avaliação:** Funcionamento (40%) · Pitch (30%) · Código (20%) · Colaboração (10%)
 
-## Legenda de Prioridades (MoSCoW)
+## Equipes
 
-| Símbolo | Categoria | Significado |
-| --- | --- | --- |
-| 🔴 M | Must Have | Sem isso, o app não funciona |
-| 🟡 S | Should Have | Seria muito melhor com isso |
-| 🔵 C | Could Have | Legal, mas não prioritário (icebox) |
-| ⚪ W | Won't Have | Decisão registrada de ficar fora do trimestre |
+### 3º ano turma A
+
+| Nome da equipe | Integrantes |
+| --- | --- |
+| Avisa IF | Rebeca, Adan, Alejandro, Enzo Eduardo, Enzo Leonardo |
+| IFinanças | Gabriel Almeida, Vinicius Mendes, Gabelo, Davi Gonzaga |
+| iHelp | Caio, Vitoria, Camille, Iago Borges, Daniel |
+| IFala | Clara, Davi Rodovalho, Enzo Candido, Lucas Mercado |
+| StudyDev | Iago Oliveira, Nicolas Bruno, Felipe Peixoto, Felipe Marques, Heitor Moreira |
+| MonitoraIF | Heitor Leal, Gabriel Zumba, Otávio Rodrigues, João Lucas Sivieri |
+
+### 3º ano turma B
+
+| Nome da equipe | Integrantes |
+| --- | --- |
+| Anbylize | Luiza, Andressa, Byanca, Manuella |
+| FlowUp | Rafael Costa, Guilherme Ferreira, Luiz Meireles, Murilo Portes, Túlio Looks |
+| Sincronize | Lara, Alexandre, Giovana, Matheus, Rian, Maria Eduarda |
+| Radar Neuro Divergente “RN” | Ana Beatriz, João Victor, Maria Paula, Sarah |
+| Monitorizador | Miguel Antonio, Erik, Kaique, Muryel |
+| E Agora, Adulto? | Felipe Augusto, Gabriel Vieira, Heitor Calegari, Philipe Medeiros, Vitor Hugo |
 
 ## Stack Comum
 
