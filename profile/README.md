@@ -32,7 +32,7 @@ O projeto desenvolve, ao mesmo tempo:
 
 | Semanas | Fase | Conteúdo | Entrega |
 | --- | --- | --- | --- |
-| **1–2** <br> **01/06 - 12/06** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | Backlog inicial |
+| **1–2** <br> **01/06 a 12/06** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | Backlog inicial |
 | **3–4** <br> **15/06 a 26/06** | Design & Navegação | Wireframes no Figma · Estrutura React Navigation | Telas navegáveis no Expo Go |
 | **5–6** <br> **29/06 a 09/07** | Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | Autenticação funcionando |
 | **7–8** <br> **28/07 a 07/08** | Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | MVP de ponta a ponta |
