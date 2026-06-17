@@ -64,7 +64,7 @@ O projeto desenvolve, ao mesmo tempo:
 | Anbylize | Luiza, Andressa, Byanca, Manuella |
 | FlowUp | Rafael Costa, Guilherme Ferreira, Luiz Meireles, Murilo Portes, Túlio Looks |
 | Sincronize | Lara, Alexandre, Giovana, Matheus, Rian, Maria Eduarda |
-| Radar Neuro Divergente “RN” | Ana Beatriz, João Victor, Maria Paula, Sarah |
+| Radar Neuro Divergente | Ana Beatriz, João Victor, Maria Paula, Sarah |
 | Monitorizador | Miguel Antonio, Erik, Kaique, Muryel |
 | E Agora, Adulto? | Felipe Augusto, Gabriel Vieira, Heitor Calegari, Philipe Medeiros, Vitor Hugo |
 
