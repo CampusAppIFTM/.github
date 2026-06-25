@@ -30,19 +30,47 @@ O projeto desenvolve, ao mesmo tempo:
 
 ## 🗓️ Plano de Aulas — 12 Semanas
 
-| Semanas | Fase | Conteúdo | Entrega |
-| --- | --- | --- | --- |
-| **1–2** <br> **01/06 a 12/06** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | Backlog inicial |
-| **3–4** <br> **15/06 a 26/06** | Design & Navegação | Wireframes no Figma · Estrutura React Navigation | Telas navegáveis no Expo Go |
-| **5–6** <br> **29/06 a 09/07** | Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | Autenticação funcionando |
-| **7–8** <br> **28/07 a 07/08** | Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | MVP de ponta a ponta |
-| **9–10** <br> **10/08 a 21/08** | Sprint 3 — Polimento | Estilização · Testes cruzados · Correção de bugs | App estável e estilizado |
-| **11** <br> **24/08 a 28/08** | Pitch Deck | Slides: Problema / Solução / Demo / Próximos Passos · Ensaio | Pitch de 5 minutos |
-| **12** <br> **01/09 a 04/09** | Shark Tank IFTM | Apresentação para banca · Demo ao vivo no Expo Go | Entrega final |
+| Semanas | Fase | Conteúdo | Entrega | Pontos |
+| --- | --- | --- | --- | --- |
+| **1–2**   
+**01/06 a 12/06** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | 
+Canvas do problema
+
+Backlog inicial
+
+ | 
+
+1
+
+1
+
+ |
+| **3–4**   
+**15/06 a 26/06** | Design & Navegação | Wireframes no Figma · Estrutura React Navigation | 
+
+Wireframes todas as telas
+
+Telas navegáveis no Expo Go
+
+ | 
+
+1
+
+3
+
+ |
+| **5–6**   
+**29/06 a 09/07** | Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | Autenticação funcionando | 5 |
+| **7–8**   
+**28/07 a 07/08** | Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | MVP de ponta a ponta | 5 |
+| **9–10**   
+**10/08 a 21/08** | Sprint 3 — Polimento | Estilização · Testes cruzados · Correção de bugs | App estável e estilizado | 5 |
+| **11**   
+**24/08 a 28/08** | Pitch Deck | Slides: Problema / Solução / Demo / Próximos Passos · Ensaio | Pitch de 5 minutos | 4 |
+| **12**   
+**01/09 a 04/09** | Shark Tank IFTM | Apresentação para banca · Demo ao vivo no Expo Go | Entrega final | 10 |
 
 **Ritmo da sala:** toda aula começa com uma _Daily Meeting_ de 10 minutos — cada equipe responde: _o que fizemos? o que faremos hoje? existe algum impedimento?_
-
-**Avaliação:** Funcionamento (40%) · Pitch (30%) · Código (20%) · Colaboração (10%)
 
 ## Equipes
 
