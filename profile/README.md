@@ -1,14 +1,12 @@
 # 📱 Campus App 2026
 
-### _Tecnologia feita por quem vive o campus._
+_Tecnologia feita por quem vive o campus._
 
 **Projeto Final · Desenvolvimento de Dispositivos Móveis · IFTM Campus Uberlândia Centro**
 
 ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)  ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)  ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 ![Status](https://img.shields.io/badge/status-em_desenvolvimento-orange)  ![Equipes](https://img.shields.io/badge/equipes-6-blue)  ![Duração](https://img.shields.io/badge/dura%C3%A7%C3%A3o-12_semanas-green)
-
----
 
 ## 🎯 Sobre o Projeto
 
@@ -24,51 +22,21 @@ Tecnologia se aprende de verdade resolvendo problemas reais. Em vez de exercíci
 
 O projeto desenvolve, ao mesmo tempo:
 
-*   **Competência técnica** — todos os módulos do curso (navegação, estado global, persistência, APIs, recursos do dispositivo) aplicados em um produto integrado;
-*   **Trabalho em equipe** — papéis definidos, code review entre colegas e testes cruzados entre grupos;
-*   **Comunicação** — cada equipe encerra o trimestre apresentando seu app no **Shark Tank IFTM**, com pitch para banca de convidados.
+* **Competência técnica** — todos os módulos do curso (navegação, estado global, persistência, APIs, recursos do dispositivo) aplicados em um produto integrado;
+* **Trabalho em equipe** — papéis definidos, code review entre colegas e testes cruzados entre grupos;
+* **Comunicação** — cada equipe encerra o trimestre apresentando seu app no **Shark Tank IFTM**, com pitch para banca de convidados.
 
 ## 🗓️ Plano de Aulas — 12 Semanas
 
 | Semanas | Fase | Conteúdo | Entrega | Pontos |
 | --- | --- | --- | --- | --- |
-| **1–2**   
-**01/06 a 12/06** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | 
-Canvas do problema
-
-Backlog inicial
-
- | 
-
-1
-
-1
-
- |
-| **3–4**   
-**15/06 a 26/06** | Design & Navegação | Wireframes no Figma · Estrutura React Navigation | 
-
-Wireframes todas as telas
-
-Telas navegáveis no Expo Go
-
- | 
-
-1
-
-3
-
- |
-| **5–6**   
-**29/06 a 09/07** | Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | Autenticação funcionando | 5 |
-| **7–8**   
-**28/07 a 07/08** | Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | MVP de ponta a ponta | 5 |
-| **9–10**   
-**10/08 a 21/08** | Sprint 3 — Polimento | Estilização · Testes cruzados · Correção de bugs | App estável e estilizado | 5 |
-| **11**   
-**24/08 a 28/08** | Pitch Deck | Slides: Problema / Solução / Demo / Próximos Passos · Ensaio | Pitch de 5 minutos | 4 |
-| **12**   
-**01/09 a 04/09** | Shark Tank IFTM | Apresentação para banca · Demo ao vivo no Expo Go | Entrega final | 10 |
+| **1–2**<br>**01/06 a 12/06** | Ideação | Formação das equipes · Canvas do Problema · MVP Workshop (MoSCoW) | 1. Canvas do problema <br> 2. Backlog inicial | 1 <br> 1 |
+| **3–4** <br> **15/06 a 26/06** | Design & Navegação | Wireframes no Figma · Estrutura React Navigation | 3. Wireframes todas as telas <br> 4. Telas navegáveis no Expo Go | 1 <br> 3 |
+| **5–6** <br> **29/06 a 09/07** | Sprint 1 — Identidade | Login (Firebase Auth / Google) · Context API · AsyncStorage | 5. Autenticação funcionando | 5 |
+| **7–8** <br> **28/07 a 07/08** | Sprint 2 — Lógica Core | Funcionalidade principal · FlatList · Firestore | 6. MVP de ponta a ponta | 5 |
+| **9–10** <br> **10/08 a 21/08** | Sprint 3 — Polimento | Estilização · Testes cruzados · Correção de bugs | 7. App estável e estilizado | 5 |
+| **11** <br> **24/08 a 28/08** | Pitch Deck | Slides: Problema / Solução / Demo / Próximos Passos · Ensaio | 8. Pitch de 5 minutos | 4 |
+| **12** <br> **01/09 a 04/09** | Shark Tank IFTM | Apresentação para banca · Demo ao vivo no Expo Go | 9. Entrega final | 10 |
 
 **Ritmo da sala:** toda aula começa com uma _Daily Meeting_ de 10 minutos — cada equipe responde: _o que fizemos? o que faremos hoje? existe algum impedimento?_
 
