@@ -6,7 +6,7 @@ _Tecnologia feita por quem vive o campus._
 
 ![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)  ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)  ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-![Status](https://img.shields.io/badge/status-em_desenvolvimento-orange)  ![Equipes](https://img.shields.io/badge/equipes-6-blue)  ![Duração](https://img.shields.io/badge/dura%C3%A7%C3%A3o-12_semanas-green)
+![Status](https://img.shields.io/badge/status-em_desenvolvimento-red)  ![Equipes](https://img.shields.io/badge/equipes-12-blue)  ![Duração](https://img.shields.io/badge/dura%C3%A7%C3%A3o-12_semanas-green)
 
 ## 🎯 Sobre o Projeto
 
