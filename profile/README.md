@@ -55,7 +55,7 @@ O projeto desenvolve, ao mesmo tempo:
 
 ### 3º ano turma B
 
-| Nome da equipe | Integrantes | Backlog | Kanban |
+| Nome da equipe | Integrantes | Backlog | Kanban | Projeto |
 | --- | --- | --- | --- | --- |
 | Anbylize | Luiza, Andressa, Byanca, Manuella | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_Anbylize.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Kanban_Anbylize.md) | [Projeto](https://github.com/orgs/CampusAppIFTM/projects/3) |
 | FlowUp | Rafael Costa, Guilherme Ferreira, Luiz Meireles, Murilo Portes, Túlio Looks | [Backlog](<https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_FlowUp.md>) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Kanban_FlowUp.md) | [Projeto](https://github.com/orgs/CampusAppIFTM/projects/16) |
