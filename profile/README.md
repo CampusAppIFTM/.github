@@ -55,14 +55,14 @@ O projeto desenvolve, ao mesmo tempo:
 
 ### 3º ano turma B
 
-| Nome da equipe | Integrantes |
-| --- | --- |
-| Anbylize | Luiza, Andressa, Byanca, Manuella |
-| FlowUp | Rafael Costa, Guilherme Ferreira, Luiz Meireles, Murilo Portes, Túlio Looks |
-| Sincronize | Lara, Alexandre, Giovana, Matheus, Rian, Maria Eduarda |
-| Radar Neuro Divergente | Ana Beatriz, João Victor, Maria Paula, Sarah |
-| Monitorizador | Miguel Antonio, Erik, Kaique, Muryel |
-| E Agora, Adulto? | Felipe Augusto, Gabriel Vieira, Heitor Calegari, Philipe Medeiros, Vitor Hugo |
+| Nome da equipe | Integrantes | Backlog | Kanban |
+| --- | --- | --- | --- |
+| Anbylize | Luiza, Andressa, Byanca, Manuella | <https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_Anbylize.md> | --- |
+| FlowUp | Rafael Costa, Guilherme Ferreira, Luiz Meireles, Murilo Portes, Túlio Looks | <https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_FlowUp.md> | --- |
+| Sincronize | Lara, Alexandre, Giovana, Matheus, Rian, Maria Eduarda | --- | --- |
+| Radar Neuro Divergente | Ana Beatriz, João Victor, Maria Paula, Sarah | --- | --- |
+| Monitorizador | Miguel Antonio, Erik, Kaique, Muryel | --- | --- |
+| E Agora, Adulto? | Felipe Augusto, Gabriel Vieira, Heitor Calegari, Philipe Medeiros, Vitor Hugo | --- | --- |
 
 ## Stack Comum
 
