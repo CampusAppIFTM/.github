@@ -2,18 +2,6 @@
 
 > Disciplina: Desenvolvimento de Dispositivos Móveis · Prof. Edson Angoti Júnior · IFTM Campus Uberlândia
 
-Este pacote contém o backlog inicial de **6 equipes**, pronto para ser transferido para o GitHub Projects. Cada arquivo corresponde a um projeto:
-
-| Arquivo | Projeto | Equipe (referência) |
-|---|---|---|
-| `Backlog_RadarNeuro.md` | Radar Neurodivergente | Ana Beatriz Ramos Del Padre |
-| `Backlog_EAgoraAdulto.md` | E Agora, Adulto? | Felipe Augusto de Oliveira |
-| `Backlog_Sincronize.md` | Sincronize | Lara Campos Goveia |
-| `Backlog_Anbylize.md` | Anbylize | Luiza Brandão Nunes |
-| `Backlog_Monitorizador.md` | Monitorizador | Miguel Antonio Alves Gontijo |
-| `Backlog_FlowUp.md` | FlowUp | Rafael Costa Fernandes |
-
----
 
 ## 1. Configuração padrão do GitHub Project (igual para todas as equipes)
 

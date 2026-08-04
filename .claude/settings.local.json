@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Figma__get_figma_skill",
+      "mcp__claude_ai_Figma__whoami",
+      "mcp__claude_ai_Figma__create_new_file",
+      "mcp__claude_ai_Figma__use_figma",
+      "mcp__claude_ai_Figma__get_screenshot",
+      "Bash(curl -L -o \"D:/.github/slide1.png\" \"https://www.figma.com/api/mcp/asset/2c5cc03c-ed04-4912-9429-d927492c7d66.png\")",
+      "Bash(curl -L -o \"D:/.github/slide6.png\" \"https://www.figma.com/api/mcp/asset/99afbba0-da6b-44bb-8ebc-c6a722600a6f.png\")",
+      "Bash(curl -L -o \"D:/.github/slide5.png\" \"https://www.figma.com/api/mcp/asset/9f9b365f-f937-4d03-b531-99765021868d.png\")",
+      "Bash(curl -L -o \"D:/.github/slide8.png\" \"https://www.figma.com/api/mcp/asset/1b3ec5c9-6f81-47be-9c83-8b03fd29b0e5.png\")",
+      "Bash(Remove-Item *)"
+    ]
+  }
+}
