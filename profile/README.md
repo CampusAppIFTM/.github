@@ -57,7 +57,7 @@ O projeto desenvolve, ao mesmo tempo:
 
 | Nome da equipe | Integrantes | Backlog | Kanban |
 | --- | --- | --- | --- |
-| Anbylize | Luiza, Andressa, Byanca, Manuella | <https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_Anbylize.md> | --- |
+| Anbylize | Luiza, Andressa, Byanca, Manuella | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_Anbylize.md) | --- |
 | FlowUp | Rafael Costa, Guilherme Ferreira, Luiz Meireles, Murilo Portes, Túlio Looks | <https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_FlowUp.md> | --- |
 | Sincronize | Lara, Alexandre, Giovana, Matheus, Rian, Maria Eduarda | --- | --- |
 | Radar Neuro Divergente | Ana Beatriz, João Victor, Maria Paula, Sarah | --- | --- |
