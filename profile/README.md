@@ -57,12 +57,12 @@ O projeto desenvolve, ao mesmo tempo:
 
 | Nome da equipe | Integrantes | Backlog | Kanban |
 | --- | --- | --- | --- |
-| Anbylize | Luiza, Andressa, Byanca, Manuella | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_Anbylize.md) | --- |
-| FlowUp | Rafael Costa, Guilherme Ferreira, Luiz Meireles, Murilo Portes, Túlio Looks | <https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_FlowUp.md> | --- |
-| Sincronize | Lara, Alexandre, Giovana, Matheus, Rian, Maria Eduarda | --- | --- |
-| Radar Neuro Divergente | Ana Beatriz, João Victor, Maria Paula, Sarah | --- | --- |
-| Monitorizador | Miguel Antonio, Erik, Kaique, Muryel | --- | --- |
-| E Agora, Adulto? | Felipe Augusto, Gabriel Vieira, Heitor Calegari, Philipe Medeiros, Vitor Hugo | --- | --- |
+| Anbylize | Luiza, Andressa, Byanca, Manuella | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_Anbylize.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Kanban_Anbylize.md) |
+| FlowUp | Rafael Costa, Guilherme Ferreira, Luiz Meireles, Murilo Portes, Túlio Looks | [Backlog](<https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_FlowUp.md>) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Kanban_FlowUp.md) |
+| Sincronize | Lara, Alexandre, Giovana, Matheus, Rian, Maria Eduarda | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_Sincronize.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Kanban_Sincronize.md) |
+| Radar Neuro Divergente | Ana Beatriz, João Victor, Maria Paula, Sarah | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_RadarNeuro.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Kanban_RadarNeuro.md) |
+| Monitorizador | Miguel Antonio, Erik, Kaique, Muryel | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_Monitorizador.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Kanban_Monitorizador.md) |
+| E Agora, Adulto? | Felipe Augusto, Gabriel Vieira, Heitor Calegari, Philipe Medeiros, Vitor Hugo | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Backlog_EAgoraAdulto.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSB_Kanban_EAgoraAdulto.md) |
 
 ## Stack Comum
 
