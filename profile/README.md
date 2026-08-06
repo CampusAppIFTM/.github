@@ -44,14 +44,14 @@ O projeto desenvolve, ao mesmo tempo:
 
 ### 3º ano turma A
 
-| Nome da equipe | Integrantes |
-| --- | --- |
-| Avisa IF | Rebeca, Adan, Alejandro, Enzo Eduardo, Enzo Leonardo |
-| IFinanças | Gabriel Almeida, Vinicius Mendes, Gabelo, Davi Gonzaga |
-| iHelp | Caio, Vitoria, Camille, Iago Borges, Daniel |
-| IFala | Clara, Davi Rodovalho, Enzo Candido, Lucas Mercado |
-| StudyDev | Iago Oliveira, Nicolas Bruno, Felipe Peixoto, Felipe Marques, Heitor Moreira |
-| MonitoraIF | Heitor Leal, Gabriel Zumba, Otávio Rodrigues, João Lucas Sivieri |
+| Nome da equipe | Integrantes | Backlog | Kanban | Projeto | Repositório |
+| --- | --- | --- | --- | --- | --- |
+| Avisa IF | Rebeca, Adan, Alejandro, Enzo Eduardo, Enzo Leonardo | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Backlog_AvisaIF.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Kanban_AvisaIF.md) | [Projeto](https://github.com/orgs/CampusAppIFTM/projects/11) | [Repositório](https://github.com/CampusAppIFTM/Avisa-IF) |
+| IFinanças | Gabriel Almeida, Vinicius Mendes, Gabelo, Davi Gonzaga | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Backlog_IFinancas.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Kanban_IFinancas.md) | [Projeto](https://github.com/orgs/CampusAppIFTM/projects/13) | [Repositório](https://github.com/CampusAppIFTM/IFinancas) |
+| iHelp | Caio, Vitoria, Camille, Iago Borges, Daniel | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Backlog_iHelp.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Kanban_iHelp.md) | [Projeto](https://github.com/orgs/CampusAppIFTM/projects/15) | [Repositório](https://github.com/CampusAppIFTM/iHelp) |
+| IFala | Clara, Davi Rodovalho, Enzo Candido, Lucas Mercado | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Backlog_IFala.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Kanban_IFala.md) | [Projeto](https://github.com/orgs/CampusAppIFTM/projects/10) | [Repositório](https://github.com/CampusAppIFTM/IFala) |
+| StudyDev | Iago Oliveira, Nicolas Bruno, Felipe Peixoto, Felipe Marques, Heitor Moreira | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Backlog_StudyDev.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Kanban_StudyDev.md) | [Projeto](https://github.com/orgs/CampusAppIFTM/projects/12) | [Repositório](https://github.com/CampusAppIFTM/StudyDev) |
+| MonitoraIF | Heitor Leal, Gabriel Zumba, Otávio Rodrigues, João Lucas Sivieri | [Backlog](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Backlog_MonitoraIF.md) | [Kanban](https://github.com/CampusAppIFTM/.github/blob/main/docs/3DSA_Kanban_MonitoraIF.md) | [Projeto](https://github.com/orgs/CampusAppIFTM/projects/14) | [Repositório](https://github.com/CampusAppIFTM/MonitoraIF) |
 
 ### 3º ano turma B
 
