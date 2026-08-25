@@ -20,49 +20,72 @@ O MoSCoW da equipe classificou **"mural com chat" como M e "chat em tempo real" 
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Contas (aluno / monitor) | MIF-01, MIF-02 | Sprint 1 |
-| 📋 Mural de Dúvidas (núcleo) | MIF-03, MIF-04, MIF-05 | Sprint 2 |
-| 💬 Respostas | MIF-06, MIF-07 | Sprint 2 |
-| ✨ Experiência | MIF-08, MIF-09 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | MIF-01, MIF-02, MIF-03, MIF-04 | Sprint 1 |
+| 📋 Mural de Dúvidas (núcleo) | MIF-05, MIF-06, MIF-07 | Sprint 2 |
+| 💬 Respostas | MIF-08, MIF-09 | Sprint 2 |
+| ✨ Experiência | MIF-10, MIF-11 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] MIF-01 · Cadastro e login
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] MIF-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] MIF-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] MIF-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como usuário, quero criar conta e fazer login, para participar do mural de dúvidas.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Cadastro/login com e-mail/senha (Firebase Auth)
-- [ ] Sessão persiste; logout no perfil
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Firebase Auth + `AuthContext` + persistência
-
----
-
-### [M] MIF-02 · Papéis de Aluno e Monitor
+### [M] MIF-04 · Rotas protegidas + Home com usuário logado + sessão persistente
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como usuário, quero me identificar como aluno ou monitor, para que o app saiba quem pode responder dúvidas.
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
 
 **Critérios de aceite**
-- [ ] Campo `papel` (aluno | monitor) no cadastro
-- [ ] Monitor pode responder dúvidas; aluno pode postar
-- [ ] Papel exposto no `AuthContext`
-
-**Tarefas técnicas**
-- [ ] Coleção `usuarios` com `papel`
-
----
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
 
 ## Issues — Sprint 2 · Lógica de Negócio
 
-### [M] MIF-03 · Postar dúvida no mural
+### [M] MIF-05 · Postar dúvida no mural
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -78,7 +101,7 @@ Como aluno, quero postar uma dúvida com matéria e descrição, para que um mon
 
 ---
 
-### [M] MIF-04 · Mural de dúvidas (listagem)
+### [M] MIF-06 · Mural de dúvidas (listagem)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -95,7 +118,7 @@ Como monitor, quero ver as dúvidas postadas, para escolher quais responder.
 
 ---
 
-### [M] MIF-05 · Detalhe da dúvida
+### [M] MIF-07 · Detalhe da dúvida
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -107,7 +130,7 @@ Como usuário, quero abrir uma dúvida e ver a descrição completa e as respost
 
 ---
 
-### [M] MIF-06 · Responder dúvida (monitor)
+### [M] MIF-08 · Responder dúvida (monitor)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -124,7 +147,7 @@ Como monitor, quero responder uma dúvida na própria publicação, para ajudar 
 
 ---
 
-### [M] MIF-07 · Marcar dúvida como resolvida (aluno)
+### [M] MIF-09 · Marcar dúvida como resolvida (aluno)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -138,7 +161,7 @@ Como aluno autor, quero marcar minha dúvida como resolvida, para indicar que a 
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] MIF-08 · Calendário de horários de atendimento
+### [S] MIF-10 · Calendário de horários de atendimento
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -153,7 +176,7 @@ Como aluno, quero ver os horários de atendimento dos monitores, para procurá-l
 
 ---
 
-### [S] MIF-09 · Filtrar dúvidas por matéria
+### [S] MIF-11 · Filtrar dúvidas por matéria
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**

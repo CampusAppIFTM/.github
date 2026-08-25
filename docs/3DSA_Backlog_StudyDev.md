@@ -8,7 +8,7 @@
 
 ## ✅ Nota do professor
 
-MoSCoW claro e bem priorizado. O maior risco, como no "E Agora, Adulto?" da outra turma, é o **conteúdo das trilhas**: organizar boas trilhas de programação dá trabalho e precisa começar cedo. Por isso o conteúdo é issue formal de Sprint 1 (STD-03), em paralelo ao código. A "motivação diária" (S) combina bem com uma sequência de dias estudados (streak) — sugestão registrada em STD-07.
+MoSCoW claro e bem priorizado. O maior risco, como no "E Agora, Adulto?" da outra turma, é o **conteúdo das trilhas**: organizar boas trilhas de programação dá trabalho e precisa começar cedo. Por isso o conteúdo é issue formal de Sprint 1 (STD-03), em paralelo ao código. A "motivação diária" (S) combina bem com uma sequência de dias estudados (streak) — sugestão registrada em STD-10.
 
 ---
 
@@ -16,33 +16,73 @@ MoSCoW claro e bem priorizado. O maior risco, como no "E Agora, Adulto?" da outr
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Autenticação | STD-01 | Sprint 1 |
-| 📚 Conteúdo das Trilhas | STD-02, STD-03 | Sprint 1–2 |
-| 🛤️ Navegação de Trilhas (núcleo) | STD-04, STD-05, STD-06 | Sprint 2 |
-| ✨ Engajamento | STD-07, STD-08, STD-09 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | STD-01, STD-02, STD-03, STD-04 | Sprint 1 |
+| 📦 Setup de Dados e Conteúdo | STD-05, STD-06 | Sprint 2 |
+| 🛤️ Navegação de Trilhas (núcleo) | STD-07, STD-08, STD-09 | Sprint 2 |
+| ✨ Engajamento | STD-10, STD-11, STD-12 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] STD-01 · Cadastro, login e sessão persistente
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] STD-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] STD-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] STD-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como aluno, quero criar conta e permanecer logado, para acessar minhas trilhas e salvar meu progresso.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Cadastro/login com e-mail/senha (Firebase Auth)
-- [ ] Sessão persiste entre aberturas (AsyncStorage)
-- [ ] Logout no perfil
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Firebase Auth + `AuthContext` + persistência
+### [M] STD-04 · Rotas protegidas + Home com usuário logado + sessão persistente
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
----
+**História de usuário**
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
 
-### [M] STD-02 · Modelo de progresso do aluno
-**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+**Critérios de aceite**
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
+
+## Issues — Sprint 2 · Lógica de Negócio
+
+### [M] STD-05 · Modelo de progresso do aluno
+**Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`, `setup`
 
 **História de usuário**
 Como aluno, quero que minhas aulas concluídas fiquem salvas, para retomar de onde parei.
@@ -58,8 +98,8 @@ Como aluno, quero que minhas aulas concluídas fiquem salvas, para retomar de on
 
 ---
 
-### [M] STD-03 · Conteúdo das trilhas
-**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+### [M] STD-06 · Conteúdo das trilhas
+**Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`, `setup`
 
 **História de usuário**
 Como aluno iniciante, quero trilhas organizadas por linguagem com conteúdos objetivos, para aprender de forma estruturada.
@@ -67,7 +107,7 @@ Como aluno iniciante, quero trilhas organizadas por linguagem com conteúdos obj
 **Critérios de aceite**
 - [ ] Mínimo de 2 trilhas (ex.: Lógica/Python e Web/HTML-CSS), 3 módulos cada, 3 aulas por módulo
 - [ ] Cada aula tem título + conteúdo em texto (e link de vídeo opcional)
-- [ ] Conteúdo revisado pela equipe antes do Sprint 2
+- [ ] Conteúdo revisado pela equipe
 - [ ] Estrutura em JSON pronta para consumo
 
 **Tarefas técnicas**
@@ -75,13 +115,11 @@ Como aluno iniciante, quero trilhas organizadas por linguagem com conteúdos obj
 - [ ] Dividir a escrita entre os 5 membros
 - [ ] Carregar no Firestore (coleção `trilhas`)
 
-> ⚠️ Maior risco do projeto — começar a produzir conteúdo já no Sprint 1.
+> ⚠️ Maior risco do projeto — começar a produzir conteúdo já no início do Sprint 2.
 
 ---
 
-## Issues — Sprint 2 · Lógica de Negócio
-
-### [M] STD-04 · Tela de trilhas (Home)
+### [M] STD-07 · Tela de trilhas (Home)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -98,7 +136,7 @@ Como aluno, quero ver as trilhas disponíveis separadas por linguagem/tema, para
 
 ---
 
-### [M] STD-05 · Lista de aulas da trilha
+### [M] STD-08 · Lista de aulas da trilha
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -111,7 +149,7 @@ Como aluno, quero ver as aulas de uma trilha em ordem, sabendo quais já conclu�
 
 ---
 
-### [M] STD-06 · Tela de aula (conteúdo)
+### [M] STD-09 · Tela de aula (conteúdo)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -129,7 +167,7 @@ Como aluno, quero ler o conteúdo da aula e marcá-la como concluída, para regi
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] STD-07 · Motivação diária (streak)
+### [S] STD-10 · Motivação diária (streak)
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -141,7 +179,7 @@ Como aluno, quero ver minha sequência de dias estudando e uma mensagem motivaci
 
 ---
 
-### [S] STD-08 · Notificações de estudo
+### [S] STD-11 · Notificações de estudo
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -156,7 +194,7 @@ Como aluno, quero um lembrete diário, para não esquecer de estudar.
 
 ---
 
-### [C] STD-09 · Modo escuro
+### [C] STD-12 · Modo escuro
 **Milestone:** — (icebox) · **Labels:** `could-have`
 
 **História de usuário**
@@ -171,7 +209,7 @@ Como aluno, quero modo escuro, para estudar com conforto visual à noite.
 
 | ID | Item | Condição para entrar |
 |---|---|---|
-| STD-09 | Modo escuro | Sprints concluídos com folga |
+| STD-12 | Modo escuro | Sprints concluídos com folga |
 
 ## Fora do Escopo (Won't Have — registrado, não vira issue)
 

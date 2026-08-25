@@ -16,36 +16,72 @@ MoSCoW bem montado. Único ajuste: o item M da equipe juntou **5 funcionalidades
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Autenticação | IFI-01 | Sprint 1 |
-| 💰 Registro de Gastos (núcleo) | IFI-02, IFI-03, IFI-04 | Sprint 2 |
-| 📊 Dashboard | IFI-05, IFI-06 | Sprint 2 |
-| ✨ Acompanhamento | IFI-07, IFI-08, IFI-09 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | IFI-01, IFI-02, IFI-03, IFI-04 | Sprint 1 |
+| 💰 Registro de Gastos (núcleo) | IFI-05, IFI-06, IFI-07 | Sprint 2 |
+| 📊 Dashboard | IFI-08, IFI-09 | Sprint 2 |
+| ✨ Acompanhamento | IFI-10, IFI-11, IFI-12 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] IFI-01 · Cadastro, login e sessão persistente
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] IFI-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] IFI-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] IFI-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como usuário, quero criar conta e permanecer logado, para que meus dados financeiros fiquem salvos e privados.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Cadastro/login com e-mail/senha (Firebase Auth)
-- [ ] Sessão persiste entre aberturas (AsyncStorage)
-- [ ] Cada usuário só enxerga os próprios dados
-- [ ] Logout no perfil
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Firebase Auth + `AuthContext`
-- [ ] Regras de segurança do Firestore por UID
+### [M] IFI-04 · Rotas protegidas + Home com usuário logado + sessão persistente
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
----
+**História de usuário**
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
+
+**Critérios de aceite**
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
 
 ## Issues — Sprint 2 · Lógica de Negócio
 
-### [M] IFI-02 · Registrar gasto
+### [M] IFI-05 · Registrar gasto
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -62,7 +98,7 @@ Como usuário, quero registrar um gasto com valor, descrição e data, para acom
 
 ---
 
-### [M] IFI-03 · Classificar gasto (escola / fora dela)
+### [M] IFI-06 · Classificar gasto (escola / fora dela)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -79,7 +115,7 @@ Como usuário do IFTM, quero classificar cada gasto como "na escola" ou "fora de
 
 ---
 
-### [M] IFI-04 · Listar e remover transações
+### [M] IFI-07 · Listar e remover transações
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -92,7 +128,7 @@ Como usuário, quero ver todas as minhas transações em uma lista e poder remov
 
 ---
 
-### [M] IFI-05 · Dashboard com resumo financeiro
+### [M] IFI-08 · Dashboard com resumo financeiro
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -109,7 +145,7 @@ Como usuário, quero ver na tela inicial meu saldo, total de receitas e despesas
 
 ---
 
-### [M] IFI-06 · Gráfico simples de gastos por categoria
+### [M] IFI-09 · Gráfico simples de gastos por categoria
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -128,7 +164,7 @@ Como usuário, quero ver um gráfico dos meus gastos por categoria, para identif
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] IFI-07 · Alertas de gastos
+### [S] IFI-10 · Alertas de gastos
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -140,7 +176,7 @@ Como usuário, quero ser alertado quando passar de um limite definido, para evit
 
 ---
 
-### [S] IFI-08 · Metas financeiras simples
+### [S] IFI-11 · Metas financeiras simples
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -152,7 +188,7 @@ Como usuário, quero definir uma meta de economia, para acompanhar minha evoluç
 
 ---
 
-### [S] IFI-09 · Relatório mensal e histórico
+### [S] IFI-12 · Relatório mensal e histórico
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**

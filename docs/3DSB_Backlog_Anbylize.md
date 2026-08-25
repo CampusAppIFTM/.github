@@ -10,7 +10,7 @@
 
 MoSCoW bem equilibrado — os M formam um fluxo coerente (login → ver horários → filtrar → agendar) e o W ("negociar horários") mostra maturidade ao cortar comunicação livre entre usuários. Dois pontos de atenção:
 
-1. **Conflito de agendamento é o coração técnico do app**: dois usuários tentando reservar o mesmo horário ao mesmo tempo. A issue ANB-05 trata isso explicitamente — é o que diferencia este app de uma lista comum.
+1. **Conflito de agendamento é o coração técnico do app**: dois usuários tentando reservar o mesmo horário ao mesmo tempo. A issue ANB-08 trata isso explicitamente — é o que diferencia este app de uma lista comum.
 2. A **confirmação do administrador (S)** muda o fluxo do agendamento (reserva nasce "pendente"). A decisão de incluí-la ou não deve ser tomada **antes** do Sprint 2, pois afeta o modelo de dados. Recomendação: incluir o campo `status` desde o início, mesmo que a tela de aprovação só venha no Sprint 3.
 
 ---
@@ -19,40 +19,73 @@ MoSCoW bem equilibrado — os M formam um fluxo coerente (login → ver horário
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Autenticação Institucional | ANB-01 | Sprint 1 |
-| 📅 Visualização de Horários (núcleo) | ANB-02, ANB-03, ANB-04 | Sprint 2 |
-| ✍️ Agendamento | ANB-05, ANB-06 | Sprint 2 |
-| 🛡️ Administração | ANB-07 | Sprint 3 |
-| ✨ Experiência | ANB-08, ANB-09 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | ANB-01, ANB-02, ANB-03, ANB-04 | Sprint 1 |
+| 📅 Visualização de Horários (núcleo) | ANB-05, ANB-06, ANB-07 | Sprint 2 |
+| ✍️ Agendamento | ANB-08, ANB-09 | Sprint 2 |
+| 🛡️ Administração | ANB-10 | Sprint 3 |
+| ✨ Experiência | ANB-11, ANB-12 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] ANB-01 · Login com Google restrito ao e-mail estudantil
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] ANB-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] ANB-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] ANB-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como aluno, quero entrar com minha conta Google institucional, para que apenas a comunidade estudantil acesse os agendamentos.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Login via conta Google (expo-auth-session ou Firebase Auth)
-- [ ] Apenas e-mails do domínio institucional são aceitos
-- [ ] E-mail de outro domínio exibe mensagem clara e não entra
-- [ ] Sessão persiste entre aberturas do app
-- [ ] Perfis: `aluno` e `admin` (campo no Firestore)
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Configurar Google OAuth (lembrar: requer Expo local + dispositivo físico, não funciona no Snack)
-- [ ] Validação do domínio do e-mail após o login
-- [ ] `AuthContext` + AsyncStorage
-- [ ] Coleção `usuarios` com campo `tipo`
+### [M] ANB-04 · Rotas protegidas + Home com usuário logado + sessão persistente
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
----
+**História de usuário**
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
+
+**Critérios de aceite**
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
 
 ## Issues — Sprint 2 · Lógica de Negócio
 
-### [M] ANB-02 · Calendário de horários (verde/vermelho)
+### [M] ANB-05 · Calendário de horários (verde/vermelho)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -72,7 +105,7 @@ Como aluno, quero ver o calendário da quadra com horários livres em verde e oc
 
 ---
 
-### [M] ANB-03 · Cronograma semanal das modalidades
+### [M] ANB-06 · Cronograma semanal das modalidades
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -89,7 +122,7 @@ Como aluno, quero ver o cronograma fixo semanal (treinos e aulas curriculares), 
 
 ---
 
-### [M] ANB-04 · Filtrar horários disponíveis
+### [M] ANB-07 · Filtrar horários disponíveis
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -98,11 +131,11 @@ Como aluno, quero filtrar apenas os horários livres, para escolher rapidamente 
 **Critérios de aceite**
 - [ ] Alternância "Mostrar só disponíveis" na tela principal
 - [ ] Lista filtrada mostra dia + horário de cada slot livre
-- [ ] Tocar em um slot livre leva direto ao agendamento (ANB-05)
+- [ ] Tocar em um slot livre leva direto ao agendamento (ANB-08)
 
 ---
 
-### [M] ANB-05 · Agendar horário (com tratamento de conflito)
+### [M] ANB-08 · Agendar horário (com tratamento de conflito)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -123,7 +156,7 @@ Como aluno, quero reservar um horário livre informando a modalidade, para garan
 
 ---
 
-### [M] ANB-06 · Meus agendamentos
+### [M] ANB-09 · Meus agendamentos
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -138,7 +171,7 @@ Como aluno, quero consultar minhas reservas futuras, para lembrar quando agendei
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] ANB-07 · Painel de aprovação do administrador
+### [S] ANB-10 · Painel de aprovação do administrador
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -151,7 +184,7 @@ Como administrador da quadra, quero aprovar ou recusar agendamentos pendentes, p
 
 ---
 
-### [S] ANB-08 · Notificação semanal do cronograma
+### [S] ANB-11 · Notificação semanal do cronograma
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -166,7 +199,7 @@ Como aluno, quero receber um resumo semanal do cronograma de esportes, para me p
 
 ---
 
-### [S] ANB-09 · Modo escuro
+### [S] ANB-12 · Modo escuro
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**

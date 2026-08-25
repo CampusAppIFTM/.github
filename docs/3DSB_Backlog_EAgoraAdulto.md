@@ -16,35 +16,73 @@ O MoSCoW desta equipe está **muito bem construído** — justificativas claras 
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Conta e Progresso | EAA-01, EAA-02 | Sprint 1 |
-| 📚 Conteúdo das Trilhas | EAA-03 | Sprint 1–2 |
-| 🎮 Trilha Gamificada (núcleo) | EAA-04, EAA-05, EAA-06, EAA-07 | Sprint 2 |
-| 🏆 Engajamento | EAA-08, EAA-09 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | EAA-01, EAA-02, EAA-03, EAA-04 | Sprint 1 |
+| 📦 Setup de Dados e Conteúdo | EAA-05, EAA-06 | Sprint 2 |
+| 🎮 Trilha Gamificada (núcleo) | EAA-07, EAA-08, EAA-09, EAA-10 | Sprint 2 |
+| 🏆 Engajamento | EAA-11, EAA-12 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] EAA-01 · Cadastro, login e sessão persistente
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] EAA-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] EAA-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] EAA-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como aluno do 3º ano, quero criar minha conta e permanecer logado, para acompanhar minha evolução individual ao longo das semanas.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Cadastro com e-mail/senha via Firebase Authentication
-- [ ] Sessão persiste ao fechar e reabrir o app (AsyncStorage)
-- [ ] Logout disponível na tela de perfil
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Configurar Firebase Auth
-- [ ] `AuthContext` com persistência em AsyncStorage
-- [ ] Navegação condicional logado ↔ não logado
+### [M] EAA-04 · Rotas protegidas + Home com usuário logado + sessão persistente
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
----
+**História de usuário**
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
 
-### [M] EAA-02 · Modelo de progresso do usuário
-**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+**Critérios de aceite**
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
+
+## Issues — Sprint 2 · Lógica de Negócio
+
+### [M] EAA-05 · Modelo de progresso do usuário
+**Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`, `setup`
 
 **História de usuário**
 Como aluno, quero que meu progresso (fases concluídas, XP) fique salvo na nuvem, para não perder nada se trocar de celular.
@@ -61,8 +99,8 @@ Como aluno, quero que meu progresso (fases concluídas, XP) fique salvo na nuvem
 
 ---
 
-### [M] EAA-03 · Conteúdo das trilhas (Emprego, Faculdade, Financeiro)
-**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+### [M] EAA-06 · Conteúdo das trilhas (Emprego, Faculdade, Financeiro)
+**Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`, `setup`
 
 **História de usuário**
 Como aluno, quero lições curtas e práticas sobre a vida adulta, para aprender o que a escola não ensina formalmente.
@@ -70,7 +108,7 @@ Como aluno, quero lições curtas e práticas sobre a vida adulta, para aprender
 **Critérios de aceite**
 - [ ] Mínimo de 3 fases por trilha, com 3 lições cada (27 lições no total)
 - [ ] Cada lição tem: texto curto (máx. 200 palavras) + quiz de 3 perguntas
-- [ ] Conteúdo revisado por pelo menos 1 professor antes do Sprint 2
+- [ ] Conteúdo revisado por pelo menos 1 professor
 - [ ] Estrutura em JSON pronta para consumo pelo app
 
 **Tarefas técnicas**
@@ -78,13 +116,11 @@ Como aluno, quero lições curtas e práticas sobre a vida adulta, para aprender
 - [ ] Dividir a escrita entre os 5 membros (cada um ~5 lições)
 - [ ] Armazenar no Firestore (coleção `trilhas`) ou JSON local — decidir e registrar
 
-> ⚠️ **Esta issue é o maior risco do projeto.** Sem conteúdo pronto, o Sprint 2 trava. Começar a escrever já no Sprint 1, em paralelo ao código.
+> ⚠️ **Maior risco do projeto** — começar a escrever o conteúdo já no início do Sprint 2, em paralelo ao código.
 
 ---
 
-## Issues — Sprint 2 · Lógica de Negócio
-
-### [M] EAA-04 · Tela de trilha estilo Duolingo
+### [M] EAA-07 · Tela de trilha estilo Duolingo
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -103,7 +139,7 @@ Como aluno, quero ver minha trilha como um caminho de fases, para entender visua
 
 ---
 
-### [M] EAA-05 · Tela de lição (texto)
+### [M] EAA-08 · Tela de lição (texto)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -120,7 +156,7 @@ Como aluno, quero ler uma lição curta antes do quiz, para aprender o conteúdo
 
 ---
 
-### [M] EAA-06 · Quiz com correção imediata
+### [M] EAA-09 · Quiz com correção imediata
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -139,7 +175,7 @@ Como aluno, quero responder um quiz após a lição e ver na hora o que acertei,
 
 ---
 
-### [M] EAA-07 · XP e barra de progresso
+### [M] EAA-10 · XP e barra de progresso
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -158,7 +194,7 @@ Como aluno, quero ganhar XP ao concluir lições e ver minha barra crescer, para
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] EAA-08 · Conquistas e medalhas
+### [S] EAA-11 · Conquistas e medalhas
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -175,7 +211,7 @@ Como aluno, quero desbloquear medalhas como "Mestre do Imposto de Renda", para s
 
 ---
 
-### [S] EAA-09 · Notificação diária de lembrete
+### [S] EAA-12 · Notificação diária de lembrete
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**

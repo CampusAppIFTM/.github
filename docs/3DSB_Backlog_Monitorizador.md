@@ -8,7 +8,7 @@
 
 ## ⚠️ Nota do professor — ajuste de escopo
 
-O MoSCoW da equipe é enxuto (bom!), mas deixou **implícita** a funcionalidade mais valiosa do Canvas: *"monitores não sabem quem vai vir à sua monitoria"*. Isso significa que a **confirmação de presença (RSVP)** é o coração do app — sem ela, o Monitorizador é só um calendário estático. O backlog abaixo a promove a Must Have (MON-05 e MON-06).
+O MoSCoW da equipe é enxuto (bom!), mas deixou **implícita** a funcionalidade mais valiosa do Canvas: *"monitores não sabem quem vai vir à sua monitoria"*. Isso significa que a **confirmação de presença (RSVP)** é o coração do app — sem ela, o Monitorizador é só um calendário estático. O backlog abaixo a promove a Must Have (MON-07 e MON-08).
 
 Outro ponto: o calendário foi listado como M genérico. Ele foi quebrado em três issues (visualizar, cadastrar, detalhar) para a equipe paralelizar o trabalho.
 
@@ -18,53 +18,72 @@ Outro ponto: o calendário foi listado como M genérico. Ele foi quebrado em tr�
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Contas e Papéis | MON-01, MON-02 | Sprint 1 |
-| 📅 Calendário de Monitorias (núcleo) | MON-03, MON-04 | Sprint 2 |
-| ✋ Confirmação de Presença | MON-05, MON-06, MON-07 | Sprint 2 |
-| ✨ Experiência | MON-08, MON-09 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | MON-01, MON-02, MON-03, MON-04 | Sprint 1 |
+| 📅 Calendário de Monitorias (núcleo) | MON-05, MON-06 | Sprint 2 |
+| ✋ Confirmação de Presença | MON-07, MON-08, MON-09 | Sprint 2 |
+| ✨ Experiência | MON-10, MON-11 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] MON-01 · Login com perfis de Monitor e Estudante
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] MON-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] MON-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] MON-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como usuário, quero me cadastrar como monitor ou estudante, para que o app me mostre as funções certas para o meu papel.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Cadastro com e-mail/senha (Firebase Auth) e seleção de papel
-- [ ] Monitor vê o botão "Criar Monitoria"; estudante não vê
-- [ ] Sessão persiste entre aberturas (AsyncStorage)
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Firebase Auth + coleção `usuarios` com campo `papel`
-- [ ] `AuthContext` expondo usuário e papel
-- [ ] Navegação condicional por papel
-
----
-
-### [M] MON-02 · Tela inicial com identidade do usuário
+### [M] MON-04 · Rotas protegidas + Home com usuário logado + sessão persistente
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como usuário logado, quero ver meu nome e foto na tela inicial com a navegação principal, para me orientar dentro do app.
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
 
 **Critérios de aceite**
-- [ ] Header da Home exibe nome e foto (ou avatar com iniciais)
-- [ ] Navbar inferior com: Início · Minhas Monitorias · Calendário · Conta
-- [ ] Todas as abas navegam corretamente (telas podem estar vazias no Sprint 1)
-
-**Tarefas técnicas**
-- [ ] `BottomTabNavigator` do React Navigation com 4 abas
-- [ ] Componente `Avatar` (foto ou iniciais coloridas)
-
----
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
 
 ## Issues — Sprint 2 · Lógica de Negócio
 
-### [M] MON-03 · Calendário de monitorias
+### [M] MON-05 · Calendário de monitorias
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -82,7 +101,7 @@ Como estudante, quero ver todas as monitorias da semana em um calendário, para 
 
 ---
 
-### [M] MON-04 · Cadastrar monitoria (monitor)
+### [M] MON-06 · Cadastrar monitoria (monitor)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -101,7 +120,7 @@ Como monitor, quero cadastrar minhas sessões de monitoria, para que os estudant
 
 ---
 
-### [M] MON-05 · Confirmar presença (estudante)
+### [M] MON-07 · Confirmar presença (estudante)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -121,7 +140,7 @@ Como estudante, quero confirmar que vou a uma monitoria, para que o monitor saib
 
 ---
 
-### [M] MON-06 · Lista de confirmados (monitor)
+### [M] MON-08 · Lista de confirmados (monitor)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -134,7 +153,7 @@ Como monitor, quero ver quem confirmou presença na minha monitoria, para prepar
 
 ---
 
-### [M] MON-07 · Minhas Monitorias
+### [M] MON-09 · Minhas Monitorias
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -149,7 +168,7 @@ Como usuário, quero uma aba com as minhas monitorias — as que confirmei (estu
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] MON-08 · Filtrar monitorias por disciplina
+### [S] MON-10 · Filtrar monitorias por disciplina
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -161,7 +180,7 @@ Como estudante, quero filtrar o calendário por disciplina, para ver apenas as m
 
 ---
 
-### [S] MON-09 · Notificação de lembrete
+### [S] MON-11 · Notificação de lembrete
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**

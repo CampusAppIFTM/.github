@@ -11,7 +11,7 @@
 MoSCoW coerente — a equipe acertou em cortar chat e IA. Atenção a dois pontos:
 
 1. O app tem **dois lados** (quem busca serviço e quem oferece). O cadastro do prestador com seus serviços é tão essencial quanto a listagem — por isso virou issue M própria (IHP-02).
-2. **Avaliação/reputação** não estava no MoSCoW, mas o Canvas fala em "profissionais confiáveis". Sem nenhum sinal de confiança, a listagem perde o sentido. Incluí uma versão mínima (estrelas) como Should Have (IHP-07) — vale a equipe discutir se sobe para M.
+2. **Avaliação/reputação** não estava no MoSCoW, mas o Canvas fala em "profissionais confiáveis". Sem nenhum sinal de confiança, a listagem perde o sentido. Incluí uma versão mínima (estrelas) como Should Have (IHP-09) — vale a equipe discutir se sobe para M.
 
 ---
 
@@ -19,52 +19,72 @@ MoSCoW coerente — a equipe acertou em cortar chat e IA. Atenção a dois ponto
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Contas (cliente / prestador) | IHP-01, IHP-02 | Sprint 1 |
-| 🛠️ Catálogo de Prestadores (núcleo) | IHP-03, IHP-04, IHP-05 | Sprint 2 |
-| 📇 Perfil do Prestador | IHP-06 | Sprint 2 |
-| ✨ Confiança e Busca | IHP-07, IHP-08, IHP-09 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | IHP-01, IHP-02, IHP-03, IHP-04 | Sprint 1 |
+| 🛠️ Catálogo de Prestadores (núcleo) | IHP-05, IHP-06, IHP-07 | Sprint 2 |
+| 📇 Perfil do Prestador | IHP-08 | Sprint 2 |
+| ✨ Confiança e Busca | IHP-09, IHP-10, IHP-11 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] IHP-01 · Cadastro e login (cliente / prestador)
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] IHP-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] IHP-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] IHP-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como usuário, quero me cadastrar como cliente ou prestador, para acessar as funções certas para o meu objetivo.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Cadastro/login com e-mail/senha (Firebase Auth)
-- [ ] Escolha do tipo (cliente | prestador) no cadastro
-- [ ] Sessão persiste; logout no perfil
-- [ ] Prestador vê "Meu perfil profissional"; cliente vê a busca
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Firebase Auth + coleção `usuarios` com `tipo`
-- [ ] `AuthContext` + navegação condicional
-
----
-
-### [M] IHP-02 · Cadastro do serviço do prestador
+### [M] IHP-04 · Rotas protegidas + Home com usuário logado + sessão persistente
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como prestador, quero cadastrar os serviços que ofereço, para aparecer nas buscas dos clientes.
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
 
 **Critérios de aceite**
-- [ ] Formulário: nome, categoria(s) de serviço, descrição, contato, região
-- [ ] Perfil profissional salvo no Firestore
-- [ ] Prestador pode editar o próprio perfil
-
-**Tarefas técnicas**
-- [ ] Coleção `prestadores`: `{ uid, nome, categorias[], descricao, contato, regiao }`
-
----
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
 
 ## Issues — Sprint 2 · Lógica de Negócio
 
-### [M] IHP-03 · Listar prestadores
+### [M] IHP-05 · Listar prestadores
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -81,7 +101,7 @@ Como cliente, quero ver a lista de prestadores disponíveis, para escolher quem 
 
 ---
 
-### [M] IHP-04 · Detalhe do prestador
+### [M] IHP-06 · Detalhe do prestador
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -94,7 +114,7 @@ Como cliente, quero ver o perfil completo de um prestador, para decidir se vou c
 
 ---
 
-### [M] IHP-05 · Categorias de serviço
+### [M] IHP-07 · Categorias de serviço
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -111,7 +131,7 @@ Como cliente, quero navegar pelas categorias mais solicitadas (elétrica, encana
 
 ---
 
-### [M] IHP-06 · Perfil profissional editável
+### [M] IHP-08 · Perfil profissional editável
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -125,7 +145,7 @@ Como prestador, quero manter meu perfil atualizado, para refletir os serviços e
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] IHP-07 · Avaliação por estrelas
+### [S] IHP-09 · Avaliação por estrelas
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -138,7 +158,7 @@ Como cliente, quero avaliar um prestador com estrelas, para ajudar outros a esco
 
 ---
 
-### [S] IHP-08 · Barra de pesquisa
+### [S] IHP-10 · Barra de pesquisa
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -150,7 +170,7 @@ Como cliente, quero buscar prestadores por nome ou serviço, para chegar mais r�
 
 ---
 
-### [S] IHP-09 · Filtro por categoria na listagem
+### [S] IHP-11 · Filtro por categoria na listagem
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**

@@ -20,74 +20,72 @@ O MoSCoW da equipe classificou **"chat em tempo real" como Must Have**. Chat com
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Autenticação e Perfil | RND-01, RND-02, RND-03 | Sprint 1 |
-| 🚨 Emergência (núcleo) | RND-04, RND-05, RND-06 | Sprint 2 |
-| 💬 Mensagens | RND-07, RND-08 | Sprint 2 |
-| ✨ Experiência | RND-09, RND-10 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | RND-01, RND-02, RND-03, RND-04 | Sprint 1 |
+| 🚨 Emergência (núcleo) | RND-05, RND-06, RND-07 | Sprint 2 |
+| 💬 Mensagens | RND-08, RND-09 | Sprint 2 |
+| ✨ Experiência | RND-10, RND-11 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] RND-01 · Cadastro e login com e-mail e senha
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] RND-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] RND-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] RND-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como aluno neurodivergente, quero criar uma conta e fazer login com e-mail e senha, para acessar a plataforma de forma pessoal e segura.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Tela de login exibe logo, campo de e-mail e campo de senha
-- [ ] Botão "Criar conta" leva ao formulário de cadastro
-- [ ] Cadastro cria usuário no Firebase Authentication
-- [ ] Login com credenciais válidas redireciona para a Home
-- [ ] Credenciais inválidas exibem mensagem de erro clara (sem jargão técnico)
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Configurar projeto Firebase + Firebase Auth (e-mail/senha)
-- [ ] Criar telas `LoginScreen` e `CadastroScreen`
-- [ ] Implementar navegação condicional (logado ↔ não logado)
-- [ ] Validar formato de e-mail e senha mínima de 6 caracteres
-
----
-
-### [M] RND-02 · Sessão global com Context API + persistência
+### [M] RND-04 · Rotas protegidas + Home com usuário logado + sessão persistente
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como usuário, quero que o app lembre que estou logado ao fechar e reabrir, para não digitar minhas credenciais toda vez.
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
 
 **Critérios de aceite**
-- [ ] Usuário logado disponível em qualquer tela via Context
-- [ ] Fechar e reabrir o app mantém a sessão (AsyncStorage)
-- [ ] Logout limpa a sessão e volta para a tela de login
-
-**Tarefas técnicas**
-- [ ] Criar `AuthContext` com `useState` + `useEffect`
-- [ ] Persistir token/UID no AsyncStorage
-- [ ] Implementar função `logout()`
-
----
-
-### [M] RND-03 · Tipos de perfil: Aluno e Apoio (CAPNE/CAE)
-**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
-
-**História de usuário**
-Como membro do CAPNE/CAE, quero ter um perfil diferente do aluno, para acessar o painel de alertas em vez da tela de emergência.
-
-**Critérios de aceite**
-- [ ] Campo `tipo` (aluno | apoio) salvo no Firestore no cadastro
-- [ ] Após login, aluno vê a Home do aluno; apoio vê o painel de alertas
-- [ ] Não é possível um aluno acessar o painel de apoio
-
-**Tarefas técnicas**
-- [ ] Coleção `usuarios` no Firestore com campo `tipo`
-- [ ] Navegação condicional por tipo de perfil no `AuthContext`
-
----
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
 
 ## Issues — Sprint 2 · Lógica de Negócio
 
-### [M] RND-04 · Botão de Emergência
+### [M] RND-05 · Botão de Emergência
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -106,7 +104,7 @@ Como aluno em crise, quero acionar um botão de emergência bem visível, para q
 
 ---
 
-### [M] RND-05 · Painel de alertas (CAPNE/CAE)
+### [M] RND-06 · Painel de alertas (CAPNE/CAE)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -125,7 +123,7 @@ Como membro do CAPNE/CAE, quero ver os alertas de emergência em tempo real, par
 
 ---
 
-### [M] RND-06 · Chatbot de acolhimento na emergência
+### [M] RND-07 · Chatbot de acolhimento na emergência
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -143,7 +141,7 @@ Como aluno em crise, quero receber orientações simples enquanto o apoio não c
 
 ---
 
-### [M] RND-07 · Mensagens entre aluno e CAPNE (chat simplificado)
+### [M] RND-08 · Mensagens entre aluno e CAPNE (chat simplificado)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -162,7 +160,7 @@ Como aluno, quero trocar mensagens com o CAPNE, para pedir orientação também 
 
 ---
 
-### [S] RND-08 · Procurar amizade
+### [S] RND-09 · Procurar amizade
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -171,7 +169,7 @@ Como aluno, quero encontrar outros alunos com interesses parecidos, para constru
 **Critérios de aceite**
 - [ ] Lista de alunos que optaram por aparecer na busca (campo opt-in no perfil)
 - [ ] Perfil exibe nome e interesses/hiperfocos declarados
-- [ ] Solicitar conexão abre uma conversa (reutiliza RND-07)
+- [ ] Solicitar conexão abre uma conversa (reutiliza RND-08)
 
 **Tarefas técnicas**
 - [ ] Campo `visivelNaBusca: boolean` e `interesses: string[]` no perfil
@@ -181,7 +179,7 @@ Como aluno, quero encontrar outros alunos com interesses parecidos, para constru
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] RND-09 · Modo escuro
+### [S] RND-10 · Modo escuro
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -198,7 +196,7 @@ Como usuário com sensibilidade à luz, quero usar o app em modo escuro, para re
 
 ---
 
-### [M] RND-10 · Edição de perfil
+### [M] RND-11 · Edição de perfil
 **Milestone:** Sprint 3 — Polimento · **Labels:** `must-have`, `sprint-3`
 
 **História de usuário**

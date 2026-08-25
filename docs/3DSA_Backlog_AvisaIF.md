@@ -11,7 +11,7 @@
 Dois ajustes no MoSCoW da equipe:
 
 1. **"Cadastro de usuários do grêmio" estava com a justificativa de listagem** (copiada do exemplo). O que o app realmente precisa é de **autenticação comum + um papel "grêmio"** que pode publicar avisos globais. Reescrevi nesse sentido (AVI-01 e AVI-02).
-2. O **conceito central do Canvas são os grupos** ("Grupo do 3DS A" com cor própria) + a **agenda que ordena os avisos por data**. Isso virou o núcleo M (AVI-03 a AVI-06), mais importante que o filtro por turma que a equipe deixou como S.
+2. O **conceito central do Canvas são os grupos** ("Grupo do 3DS A" com cor própria) + a **agenda que ordena os avisos por data**. Isso virou o núcleo M (AVI-05 a AVI-08), mais importante que o filtro por turma que a equipe deixou como S.
 
 ---
 
@@ -19,53 +19,72 @@ Dois ajustes no MoSCoW da equipe:
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Autenticação e Papéis | AVI-01, AVI-02 | Sprint 1 |
-| 👥 Grupos de Aviso (núcleo) | AVI-03, AVI-04 | Sprint 2 |
-| 📢 Avisos e Agenda | AVI-05, AVI-06, AVI-07 | Sprint 2 |
-| ✨ Experiência | AVI-08, AVI-09, AVI-10 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | AVI-01, AVI-02, AVI-03, AVI-04 | Sprint 1 |
+| 👥 Grupos de Aviso (núcleo) | AVI-05, AVI-06 | Sprint 2 |
+| 📢 Avisos e Agenda | AVI-07, AVI-08, AVI-09 | Sprint 2 |
+| ✨ Experiência | AVI-10, AVI-11, AVI-12 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] AVI-01 · Cadastro e login
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] AVI-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] AVI-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] AVI-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como aluno, quero criar uma conta e fazer login, para acessar meus grupos de aviso de forma pessoal.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Cadastro e login com e-mail/senha via Firebase Authentication
-- [ ] Sessão persiste ao fechar e reabrir o app (AsyncStorage)
-- [ ] Logout disponível no perfil
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Configurar Firebase Auth
-- [ ] `AuthContext` + persistência
-- [ ] Navegação condicional logado ↔ não logado
-
----
-
-### [M] AVI-02 · Papel "grêmio" para avisos globais
+### [M] AVI-04 · Rotas protegidas + Home com usuário logado + sessão persistente
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como membro do grêmio, quero um papel diferenciado, para publicar o "aviso da semana" visível a todos.
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
 
 **Critérios de aceite**
-- [ ] Campo `papel` (aluno | gremio) no documento do usuário
-- [ ] Apenas papel grêmio pode criar aviso global (header da Home)
-- [ ] Aluno comum vê o aviso global mas não pode editá-lo
-
-**Tarefas técnicas**
-- [ ] Coleção `usuarios` com `papel`; grêmio promovido manualmente pelo professor no console
-- [ ] Expor o papel no `AuthContext`
-
----
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
 
 ## Issues — Sprint 2 · Lógica de Negócio
 
-### [M] AVI-03 · Criar e entrar em grupos de aviso
+### [M] AVI-05 · Criar e entrar em grupos de aviso
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -84,7 +103,7 @@ Como aluno, quero criar um grupo (ex.: "3DS A") ou entrar em um existente, para 
 
 ---
 
-### [M] AVI-04 · Listar grupos na Home
+### [M] AVI-06 · Listar grupos na Home
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -97,7 +116,7 @@ Como aluno, quero ver na Home todos os grupos a que pertenço, para acessar rapi
 
 ---
 
-### [M] AVI-05 · Publicar aviso em um grupo
+### [M] AVI-07 · Publicar aviso em um grupo
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -114,7 +133,7 @@ Como aluno, quero publicar um aviso (evento ou avaliação) em um grupo, com dat
 
 ---
 
-### [M] AVI-06 · Agenda ordenada por data
+### [M] AVI-08 · Agenda ordenada por data
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -132,7 +151,7 @@ Como aluno, quero ver todos os avisos dos meus grupos em uma agenda ordenada por
 
 ---
 
-### [M] AVI-07 · Status do aviso (pendente / concluído)
+### [M] AVI-09 · Status do aviso (pendente / concluído)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -150,7 +169,7 @@ Como aluno, quero marcar um aviso como concluído, para acompanhar o que já res
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] AVI-08 · Filtrar avisos por turma/grupo
+### [S] AVI-10 · Filtrar avisos por turma/grupo
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -162,7 +181,7 @@ Como aluno de vários grupos, quero filtrar a agenda por grupo, para focar em um
 
 ---
 
-### [S] AVI-09 · Notificação de aviso próximo
+### [S] AVI-11 · Notificação de aviso próximo
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -177,7 +196,7 @@ Como aluno, quero ser lembrado quando um evento/avaliação se aproxima, para n�
 
 ---
 
-### [C] AVI-10 · Animações de transição
+### [C] AVI-12 · Animações de transição
 **Milestone:** — (icebox) · **Labels:** `could-have`
 
 **História de usuário**
@@ -192,7 +211,7 @@ Como usuário, quero transições suaves entre telas, para uma experiência mais
 
 | ID | Item | Condição para entrar |
 |---|---|---|
-| AVI-10 | Animações de transição | Tudo entregue |
+| AVI-12 | Animações de transição | Tudo entregue |
 | AVI-C2 | Seção de achados e perdidos | Fora do foco — só se sobrar muito tempo |
 
 ## Fora do Escopo (Won't Have — registrado, não vira issue)

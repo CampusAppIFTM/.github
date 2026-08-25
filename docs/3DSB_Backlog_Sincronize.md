@@ -19,38 +19,73 @@ Dois ajustes no MoSCoW original:
 
 | Épico | Issues | Sprint |
 |---|---|---|
-| 🔐 Autenticação | SIN-01 | Sprint 1 |
-| 📅 Catálogo de Eventos (núcleo) | SIN-02, SIN-03, SIN-04 | Sprint 2 |
-| 🗓️ Agenda do Participante | SIN-05, SIN-06 | Sprint 2 |
-| 🛠️ Organizador | SIN-07 | Sprint 2 |
-| ✨ Experiência | SIN-08, SIN-09, SIN-10, SIN-11 | Sprint 3 |
+| 🔐 Identidade e Login (padrão) | SIN-01, SIN-02, SIN-03, SIN-04 | Sprint 1 |
+| 📅 Catálogo de Eventos (núcleo) | SIN-05, SIN-06, SIN-07 | Sprint 2 |
+| 🗓️ Agenda do Participante | SIN-08, SIN-09 | Sprint 2 |
+| 🛠️ Organizador | SIN-10 | Sprint 2 |
+| ✨ Experiência | SIN-11, SIN-12, SIN-13, SIN-14 | Sprint 3 |
 
 ---
 
 ## Issues — Sprint 1 · Identidade e Login
 
-### [M] SIN-01 · Login e perfis (participante / organizador)
+> **Sprint 1 padronizado — idêntico para as 12 equipes.** Baseado no codelab *Autenticação Firebase/Google*.
+> Login com Google (`@react-native-google-signin/google-signin`) + Firebase, build nativo (`expo prebuild` + `run:android`), rotas protegidas e sessão persistente. **Papéis de usuário entram no Sprint 2.**
+
+### [M] SIN-01 · Configurar Firebase e ativar login com Google
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o Firebase configurado com autenticação Google ativada, para que o app possa autenticar usuários.
+
+**Critérios de aceite**
+- [ ] Projeto criado no console do Firebase
+- [ ] Provedor de login **Google** ativado na aba Authentication
+- [ ] App Android registrado no Firebase com o nome de pacote definido
+- [ ] `google-services.json` baixado e colocado na raiz do projeto
+- [ ] Certificado **SHA-1** gerado (`gradlew signingReport`) e cadastrado no Firebase
+
+### [M] SIN-02 · Criar o app React Native e integrar as bibliotecas
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`, `setup`
+
+**História de usuário**
+Como equipe, queremos o projeto React Native criado e as bibliotecas de autenticação instaladas, para começar a programar o login.
+
+**Critérios de aceite**
+- [ ] Projeto Expo criado e aberto no VS Code
+- [ ] Biblioteca instalada: `npx expo install @react-native-google-signin/google-signin`
+- [ ] `app.json` configurado com `googleServicesFile` e o plugin do google-signin
+- [ ] `npx expo prebuild` executado sem erro (pasta `android` criada)
+- [ ] App roda no dispositivo com `npx expo run:android`
+
+### [M] SIN-03 · Implementar login e logout com Google
 **Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
 **História de usuário**
-Como estudante, quero fazer login no app, para me inscrever em eventos com minha identidade; como organizador, quero um perfil que me permita cadastrar eventos.
+Como usuário, quero entrar com minha conta Google e poder sair, para acessar o app com minha identidade.
 
 **Critérios de aceite**
-- [ ] Login com Firebase Authentication (e-mail/senha ou Google)
-- [ ] Campo `tipo` (participante | organizador) no documento do usuário
-- [ ] Sessão persiste entre aberturas do app (AsyncStorage)
-- [ ] Organizador vê o botão "Criar Evento"; participante não vê
+- [ ] `GoogleSignin.configure()` com o `webClientId` correto (do `google-services.json`)
+- [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
+- [ ] Indicador de carregamento (`ActivityIndicator`) durante o login
+- [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
 
-**Tarefas técnicas**
-- [ ] Configurar Firebase Auth + coleção `usuarios`
-- [ ] `AuthContext` com tipo de perfil
-- [ ] Navegação condicional por perfil
+### [M] SIN-04 · Rotas protegidas + Home com usuário logado + sessão persistente
+**Milestone:** Sprint 1 — Identidade e Login · **Labels:** `must-have`, `sprint-1`
 
----
+**História de usuário**
+Como usuário, quero que o app me leve à Home ao logar, mostre meu nome e foto, e lembre que estou logado ao reabrir o app.
+
+**Critérios de aceite**
+- [ ] Renderização condicional: sem usuário → Login; com usuário → Home
+- [ ] Home exibe nome e foto do objeto `user` do Google
+- [ ] Objeto `user` em estado global (Context) acessível a todas as telas
+- [ ] Sessão persiste: fechar e reabrir o app mantém o login
+- [ ] Logout limpa a sessão e retorna ao Login
 
 ## Issues — Sprint 2 · Lógica de Negócio
 
-### [M] SIN-02 · Feed de eventos
+### [M] SIN-05 · Feed de eventos
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -69,7 +104,7 @@ Como estudante, quero ver todos os eventos do campus em uma lista, para descobri
 
 ---
 
-### [M] SIN-03 · Detalhe do evento
+### [M] SIN-06 · Detalhe do evento
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -86,7 +121,7 @@ Como estudante, quero ver as informações completas de um evento, para decidir 
 
 ---
 
-### [M] SIN-04 · Inscrição em evento
+### [M] SIN-07 · Inscrição em evento
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -104,7 +139,7 @@ Como estudante, quero me inscrever em um evento com um toque, para garantir minh
 
 ---
 
-### [M] SIN-05 · Meus Eventos
+### [M] SIN-08 · Meus Eventos
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -113,7 +148,7 @@ Como estudante inscrito, quero ver apenas os eventos em que me inscrevi, para or
 **Critérios de aceite**
 - [ ] Tela lista somente eventos com inscrição do usuário logado
 - [ ] Separação visual entre "Próximos" e "Já aconteceram"
-- [ ] Tocar no evento abre o detalhe (reutiliza SIN-03)
+- [ ] Tocar no evento abre o detalhe (reutiliza SIN-06)
 
 **Tarefas técnicas**
 - [ ] Query de eventos por UID inscrito
@@ -121,7 +156,7 @@ Como estudante inscrito, quero ver apenas os eventos em que me inscrevi, para or
 
 ---
 
-### [M] SIN-06 · Calendário mensal
+### [M] SIN-09 · Calendário mensal
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -138,7 +173,7 @@ Como estudante, quero ver os eventos em um calendário mensal, para visualizar a
 
 ---
 
-### [M] SIN-07 · Cadastro de evento (organizador)
+### [M] SIN-10 · Cadastro de evento (organizador)
 **Milestone:** Sprint 2 — Lógica de Negócio · **Labels:** `must-have`, `sprint-2`
 
 **História de usuário**
@@ -159,7 +194,7 @@ Como organizador, quero cadastrar um evento com todas as informações, para div
 
 ## Issues — Sprint 3 · Polimento
 
-### [S] SIN-08 · Filtro por categoria
+### [S] SIN-11 · Filtro por categoria
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -172,7 +207,7 @@ Como estudante, quero filtrar eventos por categoria (palestra, esporte, cultura.
 
 ---
 
-### [S] SIN-09 · Notificação de proximidade do evento
+### [S] SIN-12 · Notificação de proximidade do evento
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -187,7 +222,7 @@ Como inscrito, quero ser avisado quando um evento estiver próximo, para não pe
 
 ---
 
-### [S] SIN-10 · Favoritar eventos
+### [S] SIN-13 · Favoritar eventos
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
@@ -199,7 +234,7 @@ Como estudante, quero favoritar eventos que me interessam mas ainda não decidi,
 
 ---
 
-### [S] SIN-11 · Acessibilidade básica
+### [S] SIN-14 · Acessibilidade básica
 **Milestone:** Sprint 3 — Polimento · **Labels:** `should-have`, `sprint-3`
 
 **História de usuário**
