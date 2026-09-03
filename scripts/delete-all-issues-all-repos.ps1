@@ -81,7 +81,7 @@ function Delete-IssueFromRepository {
 $repos = Get-OrganizationRepos -Org $Organization -Limit $RepoLimit
 
 if (-not $repos -or $repos.Count -eq 0) {
-  throw "Nenhum repositório encontrado na organiza" + $Cao + "" $Organization."
+  throw "Nenhum repositório encontrado na organiza" + $Cao + " .";
 }
 
 Write-Host "Organiza"+$Cao+": $Organization"

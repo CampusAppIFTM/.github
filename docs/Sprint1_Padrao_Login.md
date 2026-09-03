@@ -76,6 +76,7 @@ Como usuário, quero entrar com minha conta Google e poder sair, para acessar o 
 - [ ] Botão "Entrar" chama `GoogleSignin.signIn()` e obtém o objeto `user`
 - [ ] Indicador de carregamento (`ActivityIndicator`) enquanto o login acontece
 - [ ] Botão "Sair" chama `GoogleSignin.signOut()` e volta à tela de login
+- [ ] Valida domínio `iftm.edu.br` do usuário logado. Em caso de outro domínio, retornar à tela de login e informe a restrição de acesso aos usuários Google no domínio iftm.edu.br
 
 ---
 
