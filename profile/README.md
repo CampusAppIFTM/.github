@@ -77,6 +77,10 @@ O projeto desenvolve, ao mesmo tempo:
 | Notificações | expo-notifications (agendamento local) |
 | Distribuição | Expo Go + EAS Internal Distribution (QR code) |
 
+## Avaliação 3º trimestre
+[Tela Leitura do banco NOSQL do Firestore](https://docs.google.com/spreadsheets/d/1PztPh28EdGorVaDlvSBoWyNvcVy7zmVxD0wcWkltcRc/edit?gid=1694882633#gid=1694882633)
+[Tela de cadastro]()
+[Apresentação]()
 ---
 
 **Prof. Edson Angoti Júnior** · IFTM — Instituto Federal do Triângulo Mineiro · Campus Uberlândia Centro
